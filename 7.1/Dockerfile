@@ -1,7 +1,7 @@
 FROM php:7.1-apache
 MAINTAINER Tangent Solutions <zander@tangentsolutions.co.za>
 
-COPY ../common/init.sh /bin/
+COPY init.sh /bin/
 
 # Configure Apache Modules
 RUN a2enmod rewrite expires include deflate
@@ -59,7 +59,7 @@ RUN   \
    && ln -s /home/LogFiles /var/log/apache2
 
 # Configure Apahce Conf
-COPY ../common/apache2.conf /etc/apache2/apache2.conf
+COPY apache2.conf /etc/apache2/apache2.conf
 
 # Configure Opcache
 RUN { \
@@ -81,7 +81,7 @@ RUN { \
     } > /usr/local/etc/php/conf.d/php.ini
 
 # Enable Kudu SSH
-COPY ../common/sshd_config /etc/ssh/
+COPY sshd_config /etc/ssh/
 
 EXPOSE 2222 8080
 

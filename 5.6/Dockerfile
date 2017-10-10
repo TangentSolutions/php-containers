@@ -42,6 +42,7 @@ RUN apt-get update \
          bcmath \
          mbstring \
          pcntl \
+         suhosin \
     && docker-php-ext-enable imagick redis
 
 # Configure Directories
@@ -78,6 +79,10 @@ RUN { \
                 echo 'log_errors=On'; \
                 echo 'display_startup_errors=Off'; \
                 echo 'date.timezone=UTC'; \
+                echo 'expose_php=Off'; \
+                echo 'allow_url_fopen=Off'; \
+                echo 'allow_url_include=Off'; \
+                echo 'disable_functions=exec,passthru,shell_exec,system,proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,show_source'; \
     } > /usr/local/etc/php/conf.d/php.ini
 
 # Enable Kudu SSH

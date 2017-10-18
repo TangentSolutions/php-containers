@@ -1,6 +1,8 @@
 FROM php:5.6-apache
 MAINTAINER Tangent Solutions <zander@tangentsolutions.co.za>
 
+ENV SUHOSIN_VERSION 0.9.38
+
 COPY init.sh /bin/
 
 # Configure Apache Modules
@@ -43,6 +45,19 @@ RUN apt-get update \
          mbstring \
          pcntl \
     && docker-php-ext-enable imagick redis
+
+# Configure Suhosin
+RUN \
+    wget https://download.suhosin.org/suhosin-$SUHOSIN_VERSION.tar.gz -P /root \
+    && tar xvfz /root/suhosin-$SUHOSIN_VERSION.tar.gz -C /root \
+    && cd /root/suhosin-$SUHOSIN_VERSION \
+    && phpize \
+    && ./configure \
+    && make \
+    && cp modules/suhosin.so /usr/local/etc/php/modules/ \
+    && echo "extension=suhosin.so" > /usr/local/etc/php/conf.d/suhosin.ini \
+    && rm /root/suhosin-$SUHOSIN_VERSION.tar.gz \
+    && rm -rf /root/suhosin-$SUHOSIN_VERSION
 
 # Configure Directories
 RUN   \

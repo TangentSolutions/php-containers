@@ -42,7 +42,6 @@ RUN apt-get update \
          bcmath \
          mbstring \
          pcntl \
-         suhosin \
     && docker-php-ext-enable imagick redis
 
 # Configure Directories

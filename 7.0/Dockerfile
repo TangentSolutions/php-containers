@@ -4,7 +4,7 @@ MAINTAINER Tangent Solutions <zander@tangentsolutions.co.za>
 COPY init.sh /bin/
 
 # Configure Apache Modules
-RUN a2enmod rewrite expires include deflate
+RUN a2enmod rewrite expires include deflate headers
 
 # Install PHP Modules
 RUN apt-get update \

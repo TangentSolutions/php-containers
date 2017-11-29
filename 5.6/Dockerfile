@@ -106,6 +106,9 @@ COPY sshd_config /etc/ssh/
 
 EXPOSE 2222 8080
 
+# Fix User Permissions
+RUN usermod -u 1000 www-data
+
 # Environment Settings
 ENV APACHE_RUN_USER www-data
 ENV PORT 8080

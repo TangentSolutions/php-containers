@@ -87,6 +87,9 @@ RUN { \
 # Enable Kudu SSH
 COPY sshd_config /etc/ssh/
 
+# Fix User Permissions
+RUN usermod -u 1000 www-data
+
 EXPOSE 2222 8080
 
 # Environment Settings

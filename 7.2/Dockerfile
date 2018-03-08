@@ -69,7 +69,6 @@ RUN apt-get update \
          bcmath \
          soap \
          ldap \
-         imap \
          readline \
     && docker-php-ext-enable redis
 

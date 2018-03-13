@@ -46,6 +46,7 @@ RUN apt-get update \
         sqlite3 \
         libmemcached-dev \
         libc-client-dev -yqq \
+        openssh-server \
     && echo "root:Docker!" | chpasswd \
     && echo "cd /home" >> /etc/bash.bashrc \
     && ln -s /usr/lib/x86_64-linux-gnu/libldap.so /usr/lib/libldap.so \
